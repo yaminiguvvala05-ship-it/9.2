@@ -1,0 +1,43 @@
+[9:14 pm, 16/11/2026] Geetha: mport java.sql.*;
+
+public class JdbcInsert {
+    public static void main(String[] args) {
+        try {
+            // Load JDBC Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Establish connection
+            Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/college",
+                "root",
+                "password"
+            );
+
+            // Create SQL query
+            String sql = "INSERT INTO student VALUES (?, ?, ?)";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            // Insert values
+            ps.setInt(1, 101);
+            ps.setString(2, "Ravi");
+            ps.setInt(3, 20);
+
+            // Execute query
+            int i = ps.executeUpdate();
+
+            if (i > 0) {
+                System.out.println("Record inserted successfully");
+            }
+
+            // Close connection
+            ps.close();
+            con.close();
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+
+Ahaa number tho try cheyi
